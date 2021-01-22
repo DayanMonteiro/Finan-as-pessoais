@@ -1,7 +1,11 @@
 /* -----global -----*/
 :root{
     --dark-blue: #363f5f;
+    --green: #49aa26;
+    --light-green: #3dd705;
+    --red: #e92929;
 }
+
 * {
     margin: 0;
     padding: 0;
@@ -48,18 +52,50 @@ h2 {
 
 /*---- links & buttons ---*/
 a {
-    color: #49aa26;
+    color: var(--green);
     text-decoration: none;
 }
 
 a:hover {
-    color: #3dd705;
+    color: var(--light-green);
+}
+
+button {
+    width: 100%;
+    height: 50px;
+    border: none;
+    color: #ffffff;
+    background: var(--green);
+    padding: 0;
+    border-radius: 0.25rem;
+    cursor: pointer;
+}
+
+button:hover {
+    background: var(--light-green);
 }
 
 .button.new {
     display: inline-block;
     margin-bottom: .8rem;
 }
+
+.button.cancel {
+    color: var(--red);
+    border: 2px var(--red) solid;
+    border-radius: 0.25rem;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.6;
+}
+
+.button.cancel:hover {
+    opacity: 1;
+}
+
+
 /* -----header -----*/
 header {
     background: #2d4a22;
@@ -107,19 +143,22 @@ header {
 }
 
 .card.total {
-    background: #49aa26;
+    background: var(--green);
     color: white;
 }
 
 
 /*-----table-----*/
-#data-table {
+#transaction {
     display: block;
     width: 100%;
-    border-spacing: 0 0.5rem;
-    color: #969cb3;
-
     overflow-x: auto;
+}
+
+#data-table {
+    width: 100%;
+    border-spacing: 0 0.5rem;
+    color: #969cb3;  
 }
 
 table thead tr th:first-child,
@@ -162,6 +201,67 @@ td.income {
 
 td.expense{
     color: #e92929;
+}
+
+/*------- modal -------*/
+.modal-overlay { /* cria o fundo preto ao abrir algo por cima, ex: ao abrir foto no face quando fica em volta tudo escuro e a foto destacada no centro, esses codigos geram essa leve transparencia escurecida ao fundo */
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    position: fixed;
+    top: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* esconde ele na tela*/
+    opacity: 0;
+    visibility: hidden;
+}
+
+.modal-overlay.active { /* mostra ele na tela o que tinha sido ocultado acima */
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal {
+    background: #f0f2f5;
+    padding: 2.4rem;
+}
+
+/*------- form -------*/
+#form {
+    max-width: 500px;
+}
+
+#form h2 {
+    margin-top: 0;
+}
+
+input {
+    border: none;
+    border-radius: 0.2rem;
+    padding: 0.8rem;
+    width: 100%;
+}
+
+.input-group {
+    margin-top: 0.8rem;
+}
+
+.input-group small {
+    opacity: 0.4;
+}
+
+.input-group.actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.input-group.actions .button,
+.input-group.actions button {
+    width: 48%;
 }
 
 /*------- footer -------*/
