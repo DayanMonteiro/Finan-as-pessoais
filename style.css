@@ -217,6 +217,8 @@ td.expense{
     /* esconde ele na tela*/
     opacity: 0;
     visibility: hidden;
+
+    z-index: 999;
 }
 
 .modal-overlay.active { /* mostra ele na tela o que tinha sido ocultado acima */
@@ -227,6 +229,9 @@ td.expense{
 .modal {
     background: #f0f2f5;
     padding: 2.4rem;
+
+    position: relative;
+    z-index: 1;
 }
 
 /*------- form -------*/
@@ -263,6 +268,7 @@ input {
 .input-group.actions button {
     width: 48%;
 }
+
 
 /*------- footer -------*/
 footer {
