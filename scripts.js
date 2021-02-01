@@ -18,19 +18,19 @@ const transactions = [
     {
         id: 1,
         description: 'Luz',
-        amount: -50001,
+        amount: -50000,
         date: '23/01/2021',
     },
     {
         id: 2,
         description: 'Website',
-        amount: 50000,
+        amount: 500000,
         date: '23/01/2021',
     },
     {
         id: 3,
         description: 'Internet',
-        amount: -20012,
+        amount: -20000,
         date: '23/01/2021',
     },
     {
@@ -46,14 +46,43 @@ const transactions = [
 remover das entradas os valores das saídas e obter o total */
 
 const Transaction = {
+    all: transactions,
+    add(transaction) {
+        Transaction.all.push(transaction)
+
+        console.log(Transaction)
+    },
+
     incomes() {
-        return "Cheguei"
+        let income = 0;
+        // pegar todas as transações
+        // para cada transação
+        Transaction.all.forEach(transaction => {
+             // se ela for maior que zero
+            if(transaction.amount > 0) {
+            // somar a uma variável e retornar a variável
+            income += transaction.amount;
+
+            }
+        })
+        return income;
     },
     expenses() {
-        return "Aqui"
+        let expense = 0;
+        // pegar todas as transações
+        // para cada transação
+        Transaction.all.forEach(transaction => {
+             // se ela for menor que zero
+            if(transaction.amount < 0) {
+            // somar a uma variável e retornar a variável
+            expense += transaction.amount;
+            }
+        })
+        return expense;
     },
     total() {
-        return "Discover"
+        // entrada menos saída
+        return Transaction.incomes() + Transaction.expenses();
     }
 }
 
@@ -91,12 +120,13 @@ const DOM = {
     updateBalance() {
         document
           .getElementById('incomeDisplay')
-            .innerHTML = Transaction.incomes()
+            .innerHTML = Utils.formatCurrency(Transaction.incomes())
         document
             .getElementById('expenseDisplay')
-            .innerHTML = Transaction.expenses()
+            .innerHTML = Utils.formatCurrency(Transaction.expenses())
+        document
             .getElementById('totalDisplay')
-            .innerHTML = "total"
+            .innerHTML = Utils.formatCurrency(Transaction.total())
     }
 }
 
@@ -123,3 +153,10 @@ transactions.forEach(function(transaction) {
 })
 
 DOM.updateBalance()
+
+Transaction.add( {
+    id: 39,
+    description: 'Alo',
+    amount: 200,
+    date: '25/01/2021'
+})
